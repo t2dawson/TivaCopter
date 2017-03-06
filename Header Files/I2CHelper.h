@@ -10,8 +10,8 @@
 
 typedef unsigned char byte;
 
-void i2c_beginTransmission(int device);
-void i2c_readFrom(int device, int address, byte* buffer );
+void i2c0_init();
+int16_t i2c_readFrom(uint32_t slave_addr, uint8_t reg_addr);
 void i2c_writeTo(int device, int address, byte value);
 
 
