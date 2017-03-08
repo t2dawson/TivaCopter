@@ -6,12 +6,21 @@
  */
 
 #include "I2CHelper.h"
-#include <stdint.h>
+#include <stdbool.h>
+#include <stdarg.h>
+#include "inc/hw_i2c.h"
+#include "inc/hw_memmap.h"
+#include "inc/hw_types.h"
+#include "inc/hw_gpio.h"
+#include "driverlib/i2c.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/gpio.h"
+#include "driverlib/pin_map.h"
 
 // initialize I2C0 module
 void i2c0_init(void) {
 	
-    //enable I2C module 0
+	//enable I2C module 0
     SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
  
     //reset module
@@ -32,6 +41,7 @@ void i2c0_init(void) {
     // the I2C0 module.  The last parameter sets the I2C data transfer rate.
     // If false the data rate is set to 100kbps and if true the data rate will
     // be set to 400kbps.
+
     I2CMasterInitExpClk(I2C0_BASE, SysCtlClockGet(), false);
      
     //clear I2C FIFOs
@@ -39,8 +49,11 @@ void i2c0_init(void) {
 }
 
 // Reads Register value from specified address and register
-int16_t i2c_readFrom(uint8_t slave_addr, uint8_t reg_addr) {
-	
+int16_t i2c_readFrom(uint8_t slave_addr, uint8_t reg_addr, byte* Buffer) {
+
+	uint8_t i;
+	for (i = 0; i < (sizeof(Buffer)-1); i++) {
+
     //specify that we are writing (a register address) to the
     //slave device
     I2CMasterSlaveAddrSet(I2C0_BASE, slave_addr, false);
@@ -65,7 +78,9 @@ int16_t i2c_readFrom(uint8_t slave_addr, uint8_t reg_addr) {
     while(I2CMasterBusy(I2C0_BASE));
      
     //return data pulled from the specified register
-    return I2CMasterDataGet(I2C0_BASE);
+    Buffer[i] = I2CMasterDataGet(I2C0_BASE);
+	reg_addr++;
+	}
 }
 	
 //sends an I2C command to the specified slave

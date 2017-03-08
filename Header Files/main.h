@@ -3,7 +3,7 @@
 
 void startupProcedure();
 void calibrateESC();
-void calibrateGYRO();
+void calibrateIMU();
 void setPIDValues();
 void initQuad();
 

@@ -1,1 +1,1 @@
-"./Source Files/ESC.obj" "./Source Files/I2CHelper.obj" "./Source Files/MPU9250.obj" "./Source Files/PID.obj" "./Source Files/RCControl.obj" "./Source Files/main.obj" "./Startup Files/tm4c123gh6pm_startup_ccs.obj" -llibc.a 
+"./Source Files/ESC.obj" "./Source Files/I2CHelper.obj" "./Source Files/MPU9250.obj" "./Source Files/PID.obj" "./Source Files/RCControl.obj" "./Source Files/main.obj" "./Startup Files/tm4c123gh6pm_startup_ccs.obj" -llibc.a -l"C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib" 
