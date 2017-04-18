@@ -49,7 +49,7 @@ void i2c0_init(void) {
 }
 
 // Reads Register value from specified address and register
-int16_t i2c_readFrom(uint8_t slave_addr, uint8_t reg_addr, byte* Buffer) {
+void i2c_readFrom(uint8_t slave_addr, uint8_t reg_addr, byte* Buffer) {
 
 	uint8_t i;
 	for (i = 0; i < (sizeof(Buffer)-1); i++) {

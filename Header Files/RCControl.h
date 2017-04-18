@@ -1,19 +1,8 @@
-/*
- * RCControl.h
- *
- *  Created on: Mar 6, 2017
- *      Author: tdawson
- */
-
 #ifndef RCCONTROL_H_
 #define RCCONTROL_H_
 
-#include <stdint.h>
-
-void decodeChannel(int channel, uint16_t* decodedValue);
-
+int convertRecieverInput(int channel);
+void calibrateRC();
 
 
-
-
-#endif /* RCCONTROL_H_ */
+#endif // RCCONTROL_H_
